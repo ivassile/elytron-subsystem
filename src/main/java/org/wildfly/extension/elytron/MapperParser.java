@@ -555,8 +555,13 @@ class MapperParser {
                         }
                         break;
                     case ROLES:
-                        for (String role : reader.getListAttributeValue(i)) {
-                            PermissionMapperDefinitions.ROLES.parseAndAddParameterElement(role, permissionMapping, reader);
+                        String rolesList = reader.getAttributeValue(i);
+                        if (rolesList != null)
+                        {
+                            String[] roles = rolesList.split(",");
+                            for (String role : roles) {
+                                PermissionMapperDefinitions.ROLES.parseAndAddParameterElement(role.trim(), permissionMapping, reader);
+                            }
                         }
                         break;
                     default:
@@ -1154,8 +1159,13 @@ class MapperParser {
                         name = value;
                         break;
                     case ROLES:
-                        for (String role : reader.getListAttributeValue(i)) {
-                            RoleMapperDefinitions.ROLES.parseAndAddParameterElement(role, addRoleMapper, reader);
+                        String rolesList = reader.getAttributeValue(i);
+                        if (rolesList != null)
+                        {
+                            String[] roles = rolesList.split(",");
+                            for (String role : roles) {
+                                RoleMapperDefinitions.ROLES.parseAndAddParameterElement(role.trim(), addRoleMapper, reader);
+                            }
                         }
                         break;
                     default:
