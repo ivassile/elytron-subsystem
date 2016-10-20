@@ -38,7 +38,6 @@ import org.jboss.as.controller.ResourceDefinition;
 import org.jboss.as.controller.SimpleAttributeDefinition;
 import org.jboss.as.controller.SimpleAttributeDefinitionBuilder;
 import org.jboss.as.controller.StringListAttributeDefinition;
-import org.jboss.as.controller.registry.AttributeAccess;
 import org.jboss.as.controller.services.path.PathManager;
 import org.jboss.as.controller.services.path.PathManagerService;
 import org.jboss.dmr.ModelNode;
@@ -65,38 +64,32 @@ class KerberosSecurityFactoryDefinition {
     static final SimpleAttributeDefinition PRINCIPAL = new SimpleAttributeDefinitionBuilder(ElytronDescriptionConstants.PRINCIPAL, ModelType.STRING, false)
         .setAllowExpression(true)
         .setMinSize(1)
-        .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
         .build();
 
     static final SimpleAttributeDefinition MINIMUM_REMAINING_LIFETIME = new SimpleAttributeDefinitionBuilder(ElytronDescriptionConstants.MINIMUM_REMAINING_LIFETIME, ModelType.INT, true)
         .setAllowExpression(true)
         .setDefaultValue(new ModelNode(0))
-        .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
         .build();
 
     static final SimpleAttributeDefinition REQUEST_LIFETIME = new SimpleAttributeDefinitionBuilder(ElytronDescriptionConstants.REQUEST_LIFETIME, ModelType.INT, true)
         .setAllowExpression(true)
         .setDefaultValue(new ModelNode(GSSCredential.INDEFINITE_LIFETIME))
-        .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
         .build();
 
     static final SimpleAttributeDefinition SERVER = new SimpleAttributeDefinitionBuilder(ElytronDescriptionConstants.SERVER, ModelType.BOOLEAN, true)
         .setAllowExpression(true)
         .setDefaultValue(new ModelNode(true))
-        .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
         .build();
 
     static final SimpleAttributeDefinition DEBUG = new SimpleAttributeDefinitionBuilder(ElytronDescriptionConstants.DEBUG, ModelType.STRING, true)
         .setAllowExpression(true)
         .setDefaultValue(new ModelNode(false))
-        .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
         .build();
 
     static final StringListAttributeDefinition MECHANISM_OIDS = new StringListAttributeDefinition.Builder(ElytronDescriptionConstants.MECHANISM_OIDS)
         .setAllowExpression(true)
         .setAllowNull(false)
         .setMinSize(1)
-        .setFlags(AttributeAccess.Flag.RESTART_RESOURCE_SERVICES)
         .build();
 
     static ResourceDefinition getKerberosSecurityFactoryDefinition() {
